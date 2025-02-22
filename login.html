@@ -18,7 +18,7 @@
         <h2>Login</h2>
         <form id="loginForm">
             <label for="role">Select Role</label>
-            <select id="role" required>
+            <select id="role" required onchange="updateSignupLink()">
                 <option value="farmer">Farmer</option>
                 <option value="employee">Employee</option>
                 <option value="admin">Admin</option>
@@ -32,12 +32,12 @@
 
             <div id="emailField">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Enter your email">
+                <input type="email" id="email" placeholder="Enter your email" required>
             </div>
 
             <div id="phoneField" style="display: none;">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="Enter your phone number">
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
             </div>
 
             <label for="password">Password</label>
@@ -46,7 +46,7 @@
             <button type="submit">Login</button>
         </form>
 
-        <p>Don't have an account? <a href="#" id="signupRedirect">Sign up here</a></p>
+        <p id="signupText">Don't have an account? <a href="signup-farmer.html" id="signupRedirect">Sign up here</a></p>
     </div>
 
     <footer>
@@ -61,14 +61,31 @@
             document.getElementById("phoneField").style.display = loginType === "phone" ? "block" : "none";
         }
 
-        document.getElementById("signupRedirect").addEventListener("click", function(event) {
-            event.preventDefault();
+        function updateSignupLink() {
             let selectedRole = document.getElementById("role").value;
-            let signupPage = selectedRole === "farmer" ? "signup-farmer.html" : 
-                             selectedRole === "employee" ? "signup-employee.html" : 
-                             "signup-admin.html";
-            window.location.href = signupPage;
-        });
+            let signupRedirect = document.getElementById("signupRedirect");
+            let signupText = document.getElementById("signupText");
+
+            if (selectedRole === "farmer") {
+                signupRedirect.href = "signup-farmer.html";
+                signupText.style.display = "block";
+            } else {
+                signupText.style.display = "none"; 
+            }
+        }
+
+        function getRoleFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const role = params.get('role');
+            if (role) {
+                document.getElementById("role").value = role;
+                updateSignupLink();
+            }
+        }
+
+        window.onload = function() {
+            getRoleFromURL();
+        };
     </script>
 
 </body>
