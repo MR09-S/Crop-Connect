@@ -14,36 +14,7 @@
     </header>    
 
     <main class="main-content">
-        <section class="role-selection">
-            <h2 id="roleText">Choose Your Role</h2>
-            <div class="roles">
-                <div class="role-card" onclick="redirectToLogin('farmer')">
-                    <img src="farmer-icon.png" alt="Farmer">
-                    <h3>Farmer</h3>
-                </div>
-                <div class="role-card" onclick="redirectToLogin('employee')">
-                    <img src="employee-icon.png" alt="Employee">
-                    <h3>Employee</h3>
-                </div>
-                <div class="role-card" onclick="redirectToLogin('admin')">
-                    <img src="admin-icon.png" alt="Admin">
-                    <h3>Admin</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="info-section">
-            <h2 class="section-title">Latest Updates</h2>
-            <div class="feature-container">
-                <div class="feature-card">
-                    <h2>Spotlight</h2>
-                </div>
-
-                <div class="feature-card">
-                    <h2>Trending</h2>
-                </div>
-            </div>
-        </section>
+        <iframe src="roles.html" name="contentframe" id="contentframe"></iframe>
     </main>
 
     <footer>
@@ -51,10 +22,6 @@
         <p><a href="#">About Us</a> | <a href="#">Contact</a></p>
     </footer>
 
-    <script>
-        function redirectToLogin(role) {
-            window.location.href = `login.html?role=${role}`;
-        }
-    </script>
+    
 </body>
 </html>
