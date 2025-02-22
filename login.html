@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="loginstyle.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logoCropConnect.png" alt="Crop Connect Logo">
+        </div>
+    </header>    
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="role">Select Role</label>
+            <select id="role" required>
+                <option value="farmer">Farmer</option>
+                <option value="employee">Employee</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <label for="loginType">Login Using</label>
+            <select id="loginType" onchange="toggleLoginFields()">
+                <option value="email">Email</option>
+                <option value="phone">Phone Number</option>
+            </select>
+
+            <div id="emailField">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div id="phoneField" style="display: none;">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="#" id="signupRedirect">Sign up here</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Crop Connect. All rights reserved.</p>
+        <p><a href="#">About Us</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <script>
+        function toggleLoginFields() {
+            let loginType = document.getElementById("loginType").value;
+            document.getElementById("emailField").style.display = loginType === "email" ? "block" : "none";
+            document.getElementById("phoneField").style.display = loginType === "phone" ? "block" : "none";
+        }
+
+        document.getElementById("signupRedirect").addEventListener("click", function(event) {
+            event.preventDefault();
+            let selectedRole = document.getElementById("role").value;
+            let signupPage = selectedRole === "farmer" ? "signup-farmer.html" : 
+                             selectedRole === "employee" ? "signup-employee.html" : 
+                             "signup-admin.html";
+            window.location.href = signupPage;
+        });
+    </script>
+
+</body>
+</html>
