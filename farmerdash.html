@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashstyle.css">
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo">
+            <img id="logo" src="logoCropConnect.png" alt="Crop Connect Logo">
+        </div>
+        <div class="user-controls" id="userControls">
+            <!-- Notification Dropdown -->
+            <div class="notification-menu">
+                <button class="icon-btn" id="notificationBtn">🔔</button> <!-- Notification Icon -->
+                <div class="dropdown-menu" id="notificationDropdown">
+                    <p>No new notifications</p> <!-- Placeholder for notifications -->
+                </div>
+            </div>
+        
+            <!-- Profile Dropdown -->
+            <div class="profile-menu">
+                <button class="icon-btn profile-btn" id="profileBtn">👤</button> <!-- Profile Icon -->
+                <div class="dropdown-menu" id="profileDropdown">
+                    <a href="#">Profile Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-container">
+        <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">My Crops</a>
+            <a href="#">Add Crop</a>
+            <a href="#">Verification Status</a>
+            <a href="#">Reports & History</a>
+        </div>
+        <div>
+            <iframe src="farmerhome.html" name="dashcontent" id="dashcontent"></iframe>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const profileBtn = document.getElementById("profileBtn");
+            const profileDropdown = document.getElementById("profileDropdown");
+        
+            const notificationBtn = document.getElementById("notificationBtn");
+            const notificationDropdown = document.getElementById("notificationDropdown");
+        
+            // Toggle Profile Dropdown
+            profileBtn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+                notificationDropdown.style.display = "none"; // Close other dropdown
+            });
+        
+            // Toggle Notification Dropdown
+            notificationBtn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
+                profileDropdown.style.display = "none"; // Close other dropdown
+            });
+        
+            // Hide dropdowns when clicking outside
+            document.addEventListener("click", function(event) {
+                if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+                    profileDropdown.style.display = "none";
+                }
+                if (!notificationBtn.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                    notificationDropdown.style.display = "none";
+                }
+            });
+        
+            // Logout functionality
+            document.getElementById("logoutBtn").addEventListener("click", function() {
+                window.location.href = "login.html"; // Redirect to login page
+            });
+        });
+    </script>
+</body>
+</html>

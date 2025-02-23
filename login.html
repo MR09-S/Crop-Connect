@@ -36,11 +36,12 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter your password" required>
 
-            <button type="submit">Login</button>
+            <button type="button" onclick="redirectToDashboard()">Login</button>
         </form>
 
         <p id="signupText">Don't have an account? <a href="signup-farmer.html" id="signupRedirect">Sign up here</a></p>
     </div>
+
     <script>
         function toggleLoginFields() {
             let loginType = document.getElementById("loginType").value;
@@ -73,7 +74,22 @@
         window.onload = function() {
             getRoleFromURL();
         };
-    </script>
 
+        function redirectToDashboard() {
+            let password = document.getElementById("password").value;
+
+            if (password.trim() === "") {
+                alert("Please enter your password.");
+                return;
+            }
+
+            let selectedRole = document.getElementById("role").value;
+            let dashboardPage = selectedRole === "farmer" ? "farmerdash.html" : 
+                               selectedRole === "employee" ? "employeedash.html" : 
+                               "admindash.html";
+
+            window.location.href = dashboardPage;
+        }
+    </script>
 </body>
 </html>
