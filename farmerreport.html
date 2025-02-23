@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & History</title>
+    <link rel="stylesheet" href="dashstyle.css">
+    <style>
+        .page-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4b8b3b;
+            color: white;
+        }
+
+        .approved { color: green; font-weight: bold; }
+        .pending { color: orange; font-weight: bold; }
+        .rejected { color: red; font-weight: bold; }
+
+        .filter-container {
+            margin-bottom: 10px;
+        }
+
+        select {
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <h2>Reports & History</h2>
+
+        <div class="filter-container">
+            <label for="filterYear">Filter by Year:</label>
+            <select id="filterYear" onchange="filterTable()">
+                <option value="all">All Years</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Harvest Date</th>
+                    <th>Yield (kg)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="historyTable">
+                <!-- Data will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const historyData = [
+            { crop: "Wheat", date: "2025-01-10", yield: 1500, status: "Approved" },
+            { crop: "Tomato", date: "2024-11-20", yield: 1200, status: "Pending" },
+            { crop: "Rice", date: "2023-09-05", yield: 2000, status: "Rejected" },
+            { crop: "Maize", date: "2024-08-15", yield: 1800, status: "Approved" }
+        ];
+
+        function loadHistory() {
+            const tableBody = document.getElementById("historyTable");
+            tableBody.innerHTML = "";
+            historyData.forEach(entry => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${entry.crop}</td>
+                    <td>${entry.date}</td>
+                    <td>${entry.yield}</td>
+                    <td class="${entry.status.toLowerCase()}">
+                        ${getStatusIcon(entry.status)} ${entry.status}
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function getStatusIcon(status) {
+            switch(status) {
+                case "Approved": return "✅";
+                case "Pending": return "🟠";
+                case "Rejected": return "❌";
+                default: return "";
+            }
+        }
+
+        function filterTable() {
+            const selectedYear = document.getElementById("filterYear").value;
+            const tableBody = document.getElementById("historyTable");
+            tableBody.innerHTML = "";
+
+            historyData
+                .filter(entry => selectedYear === "all" || entry.date.startsWith(selectedYear))
+                .forEach(entry => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${entry.crop}</td>
+                        <td>${entry.date}</td>
+                        <td>${entry.yield}</td>
+                        <td class="${entry.status.toLowerCase()}">
+                            ${getStatusIcon(entry.status)} ${entry.status}
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+        }
+
+        window.onload = loadHistory;
+    </script>
+</body>
+</html>

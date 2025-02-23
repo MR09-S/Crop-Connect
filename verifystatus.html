@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Status</title>
+    <link rel="stylesheet" href="dashstyle.css">
+</head>
+<body>
+    <div class="page-container">
+        <h2>Crop Verification Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Land Area (acres)</th>
+                    <th>Mandal</th>
+                    <th>Village</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="verificationTable">
+                <!-- Data will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Sample data (replace this with real data from a backend)
+        const verificationData = [
+            { crop: "Wheat", area: 2, mandal: "Guntur", village: "Kothapalli", status: "Pending" },
+            { crop: "Tomato", area: 1.5, mandal: "Nellore", village: "Pallipadu", status: "Approved" },
+            { crop: "Rice", area: 3, mandal: "Krishna", village: "Vijayawada", status: "Rejected" }
+        ];
+
+        function loadVerificationStatus() {
+            const tableBody = document.getElementById("verificationTable");
+            verificationData.forEach(entry => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${entry.crop}</td>
+                    <td>${entry.area}</td>
+                    <td>${entry.mandal}</td>
+                    <td>${entry.village}</td>
+                    <td class="${entry.status.toLowerCase()}">${entry.status}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        window.onload = loadVerificationStatus;
+    </script>
+</body>
+</html>

@@ -88,8 +88,12 @@
                                selectedRole === "employee" ? "employeedash.html" : 
                                "admindash.html";
 
-            window.location.href = dashboardPage;
-        }
+            if (window.location !== window.parent.location) {
+                window.top.location.href = dashboardPage; // Force it to open in full page
+            } else {
+                window.location.href = dashboardPage; // Normal redirection if not inside iframe
+            }
+            }
     </script>
 </body>
 </html>
