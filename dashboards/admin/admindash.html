@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admindash.css">
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo">
+            <img id="logo" src="/logoCropConnect.png" alt="Crop Connect Logo">
+        </div>
+        <div class="user-controls">
+            <div class="notification-menu">
+                <button class="icon-btn" id="notificationBtn">🔔</button>
+                <div class="dropdown-menu" id="notificationDropdown">
+                    <p>No new notifications</p>
+                </div>
+            </div>
+            <div class="profile-menu">
+                <button class="icon-btn profile-btn" id="profileBtn">👤</button>
+                <div class="dropdown-menu" id="profileDropdown">
+                    <a href="#">Profile Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="navbar">
+            <a href="adminhome.html" target="dashcontent">Home</a>
+            <a href="manageusers.html" target="dashcontent">Manage Users</a>
+            <a href="managecrops.html" target="dashcontent">Manage Crops</a>
+            <a href="verificationoverview.html" target="dashcontent">Verification Overview</a>
+            <a href="adminreports.html" target="dashcontent">Reports & Analytics</a>
+            <a href="systemsettings.html" target="dashcontent">System Settings</a>
+        </div>
+        <div>
+            <iframe src="adminhome.html" name="dashcontent" id="dashcontent"></iframe>
+        </div>  
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Crop Connect. All rights reserved.</p>
+        <p><a href="#">About Us</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <script src="admindash.js"></script>
+</body>
+</html>

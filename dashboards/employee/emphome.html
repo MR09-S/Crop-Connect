@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - Home</title>
+    <link rel="stylesheet" href="emphome.css">
+</head>
+<body>
+    <div class="home-container">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1>Welcome, <span id="employeeName">Employee</span>!</h1>
+            <p>Your latest verification tasks are listed below.</p>
+        </section>
+
+        <!-- Pending Verifications -->
+        <section class="tasks-section">
+            <h2>Pending Crop Verifications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Farmer Name</th>
+                        <th>Crop</th>
+                        <th>Land Area (acres)</th>
+                        <th>Mandal</th>
+                        <th>Village</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tasksTable">
+                    <!-- Example data dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Recent Verifications -->
+        <section class="recent-section">
+            <h2>Recent Verifications</h2>
+            <ul id="recentList">
+                <!-- Example recent verifications dynamically added here -->
+            </ul>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <button onclick="window.location.href='verifycrops.html'">Verify Crops</button>
+            <button onclick="window.location.href='employeereports.html'">View Reports</button>
+        </section>
+    </div>
+
+    <script src="emphome.js"></script>
+</body>
+</html>

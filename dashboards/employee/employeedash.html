@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="employeedash.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="logo">
+            <img id="logo" src="/logoCropConnect.png" alt="Crop Connect Logo">
+        </div>
+        <div class="user-controls" id="userControls">
+            <!-- Notification Dropdown -->
+            <div class="notification-menu">
+                <button class="icon-btn" id="notificationBtn">🔔</button>
+                <div class="dropdown-menu" id="notificationDropdown">
+                    <p>No new notifications</p>
+                </div>
+            </div>
+        
+            <!-- Profile Dropdown -->
+            <div class="profile-menu">
+                <button class="icon-btn profile-btn" id="profileBtn">👤</button>
+                <div class="dropdown-menu" id="profileDropdown">
+                    <a href="#">Profile Settings</a>
+                    <a href="#" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="dashboard-container">
+        <div class="navbar">
+            <a href="emphome.html" target="dashcontent">Home</a>
+            <a href="verifycrops.html" target="dashcontent">Verify Crops</a>
+            <a href="reports.html" target="dashcontent">Reports & Analysis</a>
+        </div>
+        <div>
+            <iframe src="emphome.html" name="dashcontent" id="dashcontent"></iframe>
+        </div>  
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Crop Connect. All rights reserved.</p>
+        <p><a href="#">About Us</a> | <a href="#">Contact</a></p>
+    </footer>      
+
+    <!-- JavaScript -->
+    <script src="employeedash.js"></script>
+</body>
+</html>
